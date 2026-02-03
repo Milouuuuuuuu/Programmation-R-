@@ -1,19 +1,13 @@
-# ==============================================================================
+
 # TP1 - Exercice 3 (Partie 2 & 3) : Filtres, Fusion et Export
-# ==============================================================================
-# Objectif : Manipuler les dataframes avec des filtres complexes (conditions multiples),
-# analyser la distribution de variables qualitatives, fusionner les données et exporter.
 
-# Pré-requis : On recharge les données pour que ce script soit indépendant
-dfManga <- read.csv("manga.csv", header = TRUE, sep = ",", dec = ".")
-dfAnime <- read.csv("anime.csv", header = TRUE, sep = ",", dec = ".")
+dfManga <- read.csv("C:/Users/ganda/OneDrive/Bureau/BUT SD/Prog R/manga.csv", header = TRUE, sep = ",", dec = ".")
+dfAnime <- read.csv("C:/Users/ganda/OneDrive/Bureau/BUT SD/Prog R/anime.csv", header = TRUE, sep = ",", dec = ".")
 
-# ------------------------------------------------------------------------------
-# 1. Filtres sur les Mangas (Fonction subset)
-# ------------------------------------------------------------------------------
+
 print("--- Filtres Mangas ---")
 
-# 1. Mangas avec Score > 9/10
+# 1. 
 # On utilise subset(dataframe, condition)
 # On stocke le résultat dans un nouvel objet pour ne pas écraser l'original.
 manga_top_score <- subset(dfManga, Score > 9)
@@ -31,9 +25,9 @@ print(paste("Nb Mangas Populaires & Bien notés :", nrow(manga_top_popular)))
 manga_medium <- subset(dfManga, Score >= 7 & Score <= 8)
 print(paste("Nb Mangas Score [7, 8] :", nrow(manga_medium)))
 
-# ------------------------------------------------------------------------------
+
 # 2. Filtres et Analyse sur les Animes
-# ------------------------------------------------------------------------------
+
 print("--- Analyse & Filtres Animes ---")
 
 # 1. Distribution de la variable 'Rating' (Classification par âge)
@@ -75,9 +69,9 @@ print(paste("Nb Animes NON Enfants :", nrow(anime_not_kiddos)))
 anime_stars <- subset(dfAnime, Score >= 9 | Vote > 400000)
 print(paste("Nb Animes Stars (Top note OU Top popularité) :", nrow(anime_stars)))
 
-# ------------------------------------------------------------------------------
+
 # 3. Fusion (Rebinding) et Export
-# ------------------------------------------------------------------------------
+
 print("--- Fusion et Export ---")
 
 # 1. Harmonisation des colonnes
@@ -102,7 +96,7 @@ print(dim(dfConcat))
 # 4. Export vers un fichier CSV
 # sep = ";" : standard souvent utilisé en Europe pour Excel
 # row.names = FALSE : on évite d'exporter le numéro de ligne R (inutile ici)
-output_file <- "ExportTp1.csv"
+output_file <- "C:/Users/ganda/OneDrive/Bureau/BUT SD/Prog R/ExportTp1.csv"
 write.table(x = dfConcat, file = output_file, sep = ";", row.names = FALSE)
 
 print(paste("Fichier exporté avec succès :", output_file))
